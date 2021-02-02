@@ -7,6 +7,13 @@ type NewTodo struct {
 	UserID string `json:"userId"`
 }
 
+type Section struct {
+	ID        string `json:"id"`
+	PageStart int    `json:"PageStart"`
+	PageEnd   int    `json:"PageEnd"`
+	Subject   string `json:"Subject"`
+}
+
 type User struct {
 	ID   string `json:"id"`
 	Name string `json:"name"`

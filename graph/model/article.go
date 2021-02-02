@@ -5,4 +5,5 @@ type Article struct {
 	Title   string `json:"Title"`
 	Content string `json:"Content"`
 	Author 	User   `json:"user"`
+	Section Section `json:"secion"`
 }

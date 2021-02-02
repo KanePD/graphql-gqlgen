@@ -9,4 +9,5 @@ import (
 type Resolver struct{
 	todos []*model.Todo
 	articles []*model.Article
+	sections []*model.Section
 }

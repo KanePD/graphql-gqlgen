@@ -32,4 +32,11 @@ type Article{
 	Title  :String!
 	Content :String!
 	Author 	:User!
+  Section : Section!
+}
+type Section{
+  id: ID!
+  PageStart : Int!
+  PageEnd :  Int!
+  Subject : String!
 }

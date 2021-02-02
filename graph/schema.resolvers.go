@@ -12,6 +12,10 @@ import (
 	"github.com/kanePD/gqlgen-todos/graph/model"
 )
 
+func (r *articleResolver) Section(ctx context.Context, obj *model.Article) (*model.Section, error) {
+	return &obj.Section,nil
+}
+
 func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) (*model.Todo, error) {
 	todo := &model.Todo{
 		Text:   input.Text,
@@ -30,12 +34,15 @@ func (r *queryResolver) Todos(ctx context.Context) ([]*model.Todo, error) {
 func (r *queryResolver) Articles(ctx context.Context) ([]*model.Article, error) {
 	//panic(fmt.Errorf("not implemented"))
 	//fmt.Printf("my computer is: \n%#v\n", r)
-	return r.articles,nil 
+	return r.articles, nil
 }
 
 func (r *todoResolver) User(ctx context.Context, obj *model.Todo) (*model.User, error) {
 	return &model.User{ID: obj.UserID, Name: "user " + obj.UserID}, nil
 }
+
+// Article returns generated.ArticleResolver implementation.
+func (r *Resolver) Article() generated.ArticleResolver { return &articleResolver{r} }
 
 // Mutation returns generated.MutationResolver implementation.
 func (r *Resolver) Mutation() generated.MutationResolver { return &mutationResolver{r} }
@@ -46,6 +53,7 @@ func (r *Resolver) Query() generated.QueryResolver { return &queryResolver{r} }
 // Todo returns generated.TodoResolver implementation.
 func (r *Resolver) Todo() generated.TodoResolver { return &todoResolver{r} }
 
+type articleResolver struct{ *Resolver }
 type mutationResolver struct{ *Resolver }
 type queryResolver struct{ *Resolver }
 type todoResolver struct{ *Resolver }
